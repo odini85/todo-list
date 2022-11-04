@@ -204,6 +204,8 @@ class View {
     const tagName = e.target.tagName.toLowerCase();
     const isATag = tagName === "a";
 
+    e.preventDefault();
+
     const href = e.target.getAttribute("href")?.replace("#/", "");
     switch (true) {
       case isATag && href === "": {
@@ -329,4 +331,4 @@ class Controller {
   }
 }
 
-controller._view.render(controller._model);
+const controller = new Controller(document.querySelector("#uid_app"));
