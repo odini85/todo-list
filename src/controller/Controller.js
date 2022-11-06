@@ -27,18 +27,18 @@ export class Controller {
     });
     emitter.on("model:toggle", () => {
       this._view.render(this._model);
-      this.validateAllCheck();
+      this.updateAllChecked();
     });
     emitter.on("view:destroy", (id) => {
       this._model.delete(id);
     });
     emitter.on("model:destroy", () => {
       this._view.render(this._model);
-      this.validateAllCheck();
+      this.updateAllChecked();
     });
     emitter.on("view:filter", (nextFilter) => {
       this._model.setFilter(nextFilter);
-      this.validateAllCheck();
+      this.updateAllChecked();
     });
     emitter.on("model:filter", () => {
       this._view.render(this._model);
@@ -47,15 +47,18 @@ export class Controller {
       this._view.allCheck(false);
     });
   }
-  validateAllCheck() {
+  // 상단 전체 체크 상태
+  updateAllChecked() {
     const filteredList = this._model.getList(this._model.filter);
     switch (this._model.filter) {
+      // all
       case FILTER.ALL: {
         const completedList = this._model.getCompletedList();
         const isChecked = filteredList.length === completedList.length;
         this._view.allCheck(isChecked);
         break;
       }
+      // completed
       case FILTER.COMPLETED: {
         if (filteredList.length > 0) {
           this._view.allCheck(true);

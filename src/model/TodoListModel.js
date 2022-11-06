@@ -50,6 +50,7 @@ export class TodoListModel {
     const todo = new TodoModel(id, name, defaultFilter);
     this._map.set(id, todo);
     this._emitter.notify("model:add");
+
     return todo;
   }
   delete(id) {
@@ -79,7 +80,6 @@ export class TodoListModel {
 
     const todo = this._map.get(id);
     todo.completed = !todo.completed;
-
     this._emitter.notify("model:toggle");
 
     return true;

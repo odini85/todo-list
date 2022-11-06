@@ -65,14 +65,17 @@ export class View {
 
     const href = e.target.getAttribute("href")?.replace("#/", "");
     switch (true) {
+      // all
       case isATag && href === "": {
         this._emitter.notify("view:filter", FILTER.ALL);
         return;
       }
+      // active
       case isATag && href === "active": {
         this._emitter.notify("view:filter", FILTER.ACTIVE);
         return;
       }
+      // completed
       case isATag && href === "completed": {
         this._emitter.notify("view:filter", FILTER.COMPLETED);
         return;
