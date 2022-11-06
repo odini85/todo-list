@@ -1,0 +1,15 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "scripts": {
+    "serve": "npm run clean && parcel public/index.html --out-dir development -p 3000",
+    "clean": "rm -rf ./development && rm -rf ./.cache"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/odini85/todo-list.git"
+  },
+  "dependencies": {
+    "parcel-bundler": "^1.12.5"
+  }
+}
